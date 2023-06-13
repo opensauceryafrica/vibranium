@@ -7,5 +7,7 @@ package vibranium
 
 // Any generates a schema object that matches any data type.
 func Any() *AnySchema {
-	return &AnySchema{}
+	a := new(AnySchema)
+	a.source = a
+	return a
 }

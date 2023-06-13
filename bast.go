@@ -3,7 +3,7 @@ package vibranium
 // Wakanda is the interface that all vibranium types must implement.
 type Wakanda interface {
 	// Validate summons the power of vibranium to shield your application from invalidity present in the incoming data.
-	Validate(interface{}) error
+	Validate(interface{}, Plane) error
 
 	// Tribe describes the type of vibranium being used.
 	Tribe() string
