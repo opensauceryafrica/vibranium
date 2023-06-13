@@ -1,6 +1,6 @@
 package vibranium
 
-type Any struct {
+type AnySchema struct {
 	// source is the root vibranium type.
 	source Wakanda
 	// required is a bool pointer that determines if the field is required.
@@ -22,71 +22,71 @@ type Any struct {
 }
 
 // Source exposes the root vibranium type.
-func (a *Any) Source() Wakanda {
+func (a *AnySchema) Source() Wakanda {
 	return a.source
 }
 
 // Tribe describes the type of vibranium being used.
-func (a *Any) Tribe() string {
+func (a *AnySchema) Tribe() string {
 	return AnyTribe
 }
 
 // Required marks the field as required. Defaults to false.
-func (a *Any) Required() *Any {
+func (a *AnySchema) Required() *AnySchema {
 	a.required = true
 	return a
 }
 
 // Optional marks the field as optional. This is the default behavior.
-func (a *Any) Optional() *Any {
+func (a *AnySchema) Optional() *AnySchema {
 	a.required = false
 	return a
 }
 
 // Forbidden marks the field as forbidden. This means that the field must not be included in the incoming data. Defaults to false.
-func (a *Any) Forbidden() *Any {
+func (a *AnySchema) Forbidden() *AnySchema {
 	a.forbidden = true
 	return a
 }
 
 // Description adds a description to the field.
-func (a *Any) Description(description string) *Any {
+func (a *AnySchema) Description(description string) *AnySchema {
 	a.description = description
 	return a
 }
 
 // Allow sets the allowed values for the field. These values are validated against the incoming data before any other validation rules are applied. These values are in addition to any other permitted values. To create an exclusive list of values, use the Valid() method.
-func (a *Any) Allow(allow ...interface{}) *Any {
+func (a *AnySchema) Allow(allow ...interface{}) *AnySchema {
 	a.allow = append(a.allow, allow...)
 	return a
 }
 
 // Only sets the only option to true. This means that the field should only allow the values specified in the allow slice. Defaults to false.
 // Alternatively, you can use the Valid() method to achieve the same result.
-func (a *Any) Only() *Any {
+func (a *AnySchema) Only() *AnySchema {
 	a.only = true
 	return a
 }
 
 // Deny sets the denied values for the field.
-func (a *Any) Deny(deny ...interface{}) *Any {
+func (a *AnySchema) Deny(deny ...interface{}) *AnySchema {
 	a.deny = append(a.deny, deny...)
 	return a
 }
 
 // Valid sets the only allowed values for the field.
-func (a *Any) Valid(valid ...interface{}) *Any {
+func (a *AnySchema) Valid(valid ...interface{}) *AnySchema {
 	a.valid = append(a.valid, valid...)
 	return a
 }
 
 // Messages sets the custom error messages for different validation rules and terminates the rule chain.
-func (a *Any) Messages(messages Messages) {
+func (a *AnySchema) Messages(messages Messages) {
 	a.messages = messages
 }
 
 // Validate summons the power of vibranium to shield your application from invalidity present in the incoming data using the current vibranium type.
-func (a *Any) Validate(value interface{}, options Plane) error {
+func (a *AnySchema) Validate(value interface{}, options Plane) error {
 
 	// error to be returned
 	err := Kill{
